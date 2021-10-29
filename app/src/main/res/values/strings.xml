@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RecordData</string>
+    <string name="button_text_rec">Record Data</string>
+    <string name="button_text_stop">Stop Recording</string>
+</resources>
