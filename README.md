@@ -1,1 +1,1 @@
-# CS7470
+Rolling resistance project data collection
