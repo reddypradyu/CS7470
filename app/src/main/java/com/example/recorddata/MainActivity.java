@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveAccelerationData(SensorEvent event) {
-        File dataFile = new File(getFilesDir().getAbsolutePath() + "/data.txt");
+        File dataFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/data.txt");
         SimpleDateFormat timeStampFormat = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss");
         long timestamp = System.currentTimeMillis() + (event.timestamp - SystemClock.elapsedRealtimeNanos()) / 1000000;
         String timeStamp = timeStampFormat.format(new Date(timestamp));
