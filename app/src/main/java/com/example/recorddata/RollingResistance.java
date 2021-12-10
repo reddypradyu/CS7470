@@ -83,8 +83,6 @@ public class RollingResistance {
 //            if(counter != 1.0) {
 //                System.out.println((1 / counter));
 //            }
-
-
             if (counter == 1.0) {
                 timeDiff[i - 1] = 1.0;
             }
@@ -97,18 +95,18 @@ public class RollingResistance {
         }
         //System.out.print(Arrays.toString(timeDiff));
         System.out.println(dateStamp[1].getTime() - dateStamp[0].getTime());
-        System.out.println(Arrays.toString(timeDiff));
-        System.out.println(timeDiff.length);
+        System.out.println("times:" + Arrays.toString(timeDiff));
+        System.out.println("time length" + timeDiff.length);
 
         //for acceleration magnitude difference
         Double[] accDiff = new Double[dateStamp.length - 1];
         for (int k = 0; k < dateStamp.length-1; k++) {
             accDiff[k] = magnitude[k + 1] - magnitude[k];
         }
-        System.out.println(Arrays.toString(magnitude));
-        System.out.println(magnitude.length);
-        System.out.println(Arrays.toString(accDiff));
-        System.out.println(accDiff.length);
+        System.out.println("magnitudes:" + Arrays.toString(magnitude));
+        System.out.println("magnitude length:"+ magnitude.length);
+        System.out.println("acceleration:" + Arrays.toString(accDiff));
+        System.out.println("acceleration length:" + accDiff.length);
 
 
         //velocity calculations
@@ -116,8 +114,8 @@ public class RollingResistance {
         for (int k = 0; k < dateStamp.length-1; k++) {
             velocityCal[k] = accDiff[k] * timeDiff[k];
         }
-        System.out.println(Arrays.toString(velocityCal));
-        System.out.println(velocityCal.length);
+        System.out.println("velocities:" + Arrays.toString(velocityCal));
+        System.out.println("velocity length:" + velocityCal.length);
 
 
         //for graphing velocity
