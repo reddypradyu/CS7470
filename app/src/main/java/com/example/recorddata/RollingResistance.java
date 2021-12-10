@@ -41,6 +41,8 @@ public class RollingResistance {
 
         double weightLoad = 100;
         double sampFreq = 51.2;
+
+
         // filter the relevant accelerations
         smoothArray(xVal, 2);
         smoothArray(yVal, 2);
@@ -96,6 +98,40 @@ public class RollingResistance {
         //System.out.print(Arrays.toString(timeDiff));
         System.out.println(dateStamp[1].getTime() - dateStamp[0].getTime());
         System.out.println(Arrays.toString(timeDiff));
+        System.out.println(timeDiff.length);
+
+        //for acceleration magnitude difference
+        Double[] accDiff = new Double[dateStamp.length - 1];
+        for (int k = 0; k < dateStamp.length-1; k++) {
+            accDiff[k] = magnitude[k + 1] - magnitude[k];
+        }
+        System.out.println(Arrays.toString(magnitude));
+        System.out.println(magnitude.length);
+        System.out.println(Arrays.toString(accDiff));
+        System.out.println(accDiff.length);
+
+
+        //velocity calculations
+        Double[] velocityCal = new Double[dateStamp.length - 1];
+        for (int k = 0; k < dateStamp.length-1; k++) {
+            velocityCal[k] = accDiff[k] * timeDiff[k];
+        }
+        System.out.println(Arrays.toString(velocityCal));
+        System.out.println(velocityCal.length);
+
+
+        //for graphing velocity
+        DrawGraph velocityGraph = new DrawGraph(Arrays.asList(velocityCal));
+        velocityGraph.setPreferredSize(new Dimension(2000, 600));
+        JFrame frame1 = new JFrame("Velocity Graph");
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.getContentPane().add(velocityGraph);
+        frame1.pack();
+        frame1.setLocationRelativeTo(null);
+        frame1.setVisible(true);
+
+
+
     }
 
     // http://phrogz.net/js/framerate-independent-low-pass-filter.html
