@@ -15,7 +15,7 @@ public class RollingResistance {
 
     public static void main(String[] args) throws IOException, ParseException {
         List<List<String>> records = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\kushd\\Documents\\cs4605\\Code\\Carpet_trial4 - Carpet_trial4.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Pablo\\Desktop\\M2\\CsvTest\\src\\Carpet_trial4 - Carpet_trial4.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(COMMA_DELIMITER);
@@ -108,18 +108,30 @@ public class RollingResistance {
         System.out.println("acceleration:" + Arrays.toString(accDiff));
         System.out.println("acceleration length:" + accDiff.length);
 
-
+        //for testing graph
+        Double[] timeDiffTest = new Double[timeDiff.length + 1];
+        for (int t = 0; t < timeDiffTest.length; t++) {
+            if (t == timeDiffTest.length - 1) {
+                timeDiffTest[t] = 1.0;
+            } else {
+                timeDiffTest[t] = timeDiff[t];
+            }
+        }
+        Double[] velocityCal1 = new Double[dateStamp.length - 1];
+        for (int k = 0; k < dateStamp.length-1; k++) {
+            velocityCal1[k] = magnitude[k] * timeDiffTest[k];
+        }
         //velocity calculations
-        Double[] velocityCal = new Double[dateStamp.length - 1];
+      /*  Double[] velocityCal = new Double[dateStamp.length - 1];
         for (int k = 0; k < dateStamp.length-1; k++) {
             velocityCal[k] = accDiff[k] * timeDiff[k];
-        }
-        System.out.println("velocities:" + Arrays.toString(velocityCal));
-        System.out.println("velocity length:" + velocityCal.length);
+        } */
+        System.out.println("velocities:" + Arrays.toString(velocityCal1));
+        System.out.println("velocity length:" + velocityCal1.length);
 
 
         //for graphing velocity
-        DrawGraph velocityGraph = new DrawGraph(Arrays.asList(velocityCal));
+        DrawGraph velocityGraph = new DrawGraph(Arrays.asList(velocityCal1));
         velocityGraph.setPreferredSize(new Dimension(2000, 600));
         JFrame frame1 = new JFrame("Velocity Graph");
         frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
